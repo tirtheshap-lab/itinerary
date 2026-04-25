@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Banff 2026 — May 12–19</title>
+<style>
+:root {
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --bg:#f5f0e8; --white:#ffffff;
+  --forest:#2d5a3d; --forest-lt:#e8f0eb;
+  --gold:#b07d2e; --gold-lt:#fdf3e1;
+  --sky:#2a6b8a; --sky-lt:#e5f0f7;
+  --red-lt:#fceaea; --stone:#6b6356; --stone-lt:#f0ece4;
+  --orange:#c4500a; --orange-lt:#fff0e5;
+  --drive-bg:#f0ece3; --drive-bd:#c8bfae; --drive-txt:#5a4f3e;
+  --border:#ddd7cc; --border2:#c8c0b2;
+  --text:#2c2417; --text2:#6b5f50; --text3:#9c9080;
+  --radius:14px; --shadow:0 2px 12px rgba(44,36,23,0.07);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-sans); font-weight: 400; line-height: 1.6; min-height: 100vh; }
+
+/* HERO */
+.hero { background: var(--forest); overflow: hidden; padding: 56px 24px 0; text-align: center; }
+.hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 14px; }
+.hero-title { font-family: var(--font-serif); font-size: clamp(44px,9vw,80px); font-weight: 400; color: #fff; line-height: 1.05; }
+.hero-title span { font-style: italic; color: #f0c96a; }
+.hero-dates { font-family: var(--font-serif); font-style: italic; font-size: clamp(15px,2.5vw,21px); color: rgba(255,255,255,0.65); margin-top: 10px; }
+.hero-pills { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.hero-pill { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 100px; padding: 6px 14px; font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.85); }
+.mtn { display: block; width: 100%; margin-top: 36px; }
+
+/* LOGISTICS */
+.logistics { max-width: 900px; margin: 0 auto; padding: 28px 20px 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px,1fr)); gap: 10px; }
+.lg-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow); }
+.lg-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.lgi-g{background:var(--forest-lt)} .lgi-s{background:var(--sky-lt)} .lgi-a{background:var(--gold-lt)} .lgi-r{background:var(--red-lt)}
+.lg-info { flex: 1; min-width: 0; }
+.lg-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text3); }
+.lg-value { font-size: 13px; font-weight: 500; color: var(--text); margin-top: 1px; }
+.lg-sub { font-size: 11px; color: var(--text3); margin-top: 1px; }
+
+/* ACCOMMODATION */
+.accom-wrap { max-width: 900px; margin: 0 auto; padding: 0 20px 4px; }
+.accom-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+.accom-hdr { background: var(--forest); padding: 16px 20px; display: flex; align-items: center; gap: 12px; }
+.a-title { font-family: var(--font-serif); font-size: 17px; color: #fff; font-weight: 400; }
+.a-sub { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+.accom-body { display: grid; grid-template-columns: repeat(4,1fr); }
+.accom-cell { padding: 14px 16px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.accom-cell:last-child { border-right: none; }
+.ac-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text3); }
+.ac-val { font-size: 13px; font-weight: 500; color: var(--text); margin-top: 4px; line-height: 1.5; }
+.accom-note { padding: 11px 18px; background: var(--forest-lt); border-top: 1px solid var(--border); font-size: 12px; color: var(--forest); display: flex; gap: 8px; align-items: flex-start; line-height: 1.6; }
+
+/* TABS */
+.tab-wrap { max-width: 900px; margin: 24px auto 0; padding: 0 20px 72px; }
+.tab-nav { display: flex; gap: 4px; border-bottom: 2px solid var(--border); }
+.tab-btn { padding: 10px 20px; font-family: var(--font-sans); font-size: 13px; font-weight: 500; color: var(--text3); background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -2px; cursor: pointer; border-radius: 8px 8px 0 0; transition: color 0.15s, background 0.15s; }
+.tab-btn:hover { color: var(--text); background: var(--stone-lt); }
+.tab-btn.active { color: var(--forest); border-bottom-color: var(--forest); font-weight: 600; }
+.tab-panel { display: none; padding-top: 24px; }
+.tab-panel.active { display: block; }
+.section-label { font-size: 10px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text3); margin-bottom: 14px; }
+
+/* DAY CARDS */
+.days { display: flex; flex-direction: column; gap: 8px; }
+.day-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; transition: border-color 0.15s, box-shadow 0.15s; }
+.day-card:hover { border-color: var(--border2); box-shadow: 0 4px 18px rgba(44,36,23,0.1); }
+.day-header { display: flex; align-items: center; gap: 12px; padding: 14px 18px; cursor: pointer; user-select: none; }
+.dn { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+.dn-t{background:var(--forest-lt);color:var(--forest);border:1.5px solid rgba(45,90,61,0.2)}
+.dn-a{background:var(--gold-lt);color:var(--gold);border:1.5px solid rgba(176,125,46,0.25)}
+.dn-r{background:var(--stone-lt);color:var(--stone);border:1.5px solid rgba(107,99,86,0.2)}
+.dn-f{background:var(--sky-lt);color:var(--sky);border:1.5px solid rgba(42,107,138,0.2)}
+.day-meta { flex: 1; min-width: 0; }
+.day-date { font-size: 11px; color: var(--text3); }
+.day-name { font-size: 15px; font-weight: 500; color: var(--text); margin-top: 1px; }
+.day-tag { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; padding: 4px 10px; border-radius: 100px; flex-shrink: 0; }
+.dt-t{background:var(--forest-lt);color:var(--forest)}
+.dt-a{background:var(--gold-lt);color:var(--gold)}
+.dt-r{background:var(--stone-lt);color:var(--stone)}
+.dt-f{background:var(--sky-lt);color:var(--sky)}
+.chev { width: 16px; height: 16px; color: var(--text3); flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.22s; }
+.chev.open { transform: rotate(180deg); }
+.day-body { display: none; border-top: 1px solid var(--border); padding: 0 18px 16px; background: #fdfcfa; }
+.day-body.open { display: block; }
+
+/* TIMELINE */
+.tl-wrap { display: grid; grid-template-columns: 84px 1fr; margin-top: 14px; }
+.tl-time { font-size: 11px; font-weight: 600; color: var(--text3); padding: 5px 10px 5px 0; align-self: start; line-height: 1.4; }
+.tl-cont { padding: 5px 0; border-bottom: 1px dashed #ede8de; }
+.tl-last { border-bottom: none; }
+.tl-main { font-size: 13px; color: var(--text); line-height: 1.5; }
+.tl-note { font-size: 11px; color: var(--text3); margin-top: 3px; line-height: 1.5; }
+
+/* DRIVE ROW — dedicated style */
+.tl-drive-time {
+  font-size: 11px; font-weight: 700; color: var(--drive-txt);
+  padding: 5px 10px 5px 0; align-self: center; line-height: 1.3;
+  display: flex; align-items: center;
+}
+.tl-drive-cont {
+  background: var(--drive-bg); border: 1px solid var(--drive-bd);
+  border-radius: 8px; padding: 6px 12px; margin: 3px 0;
+  display: flex; align-items: center; gap: 8px;
+}
+.tl-drive-route { font-size: 12px; font-weight: 600; color: var(--drive-txt); }
+.tl-drive-dur { font-size: 11px; color: var(--stone); margin-top: 1px; }
+
+/* HIGHLIGHTED ROWS */
+.tl-hl .tl-time { color: var(--forest); font-weight: 700; }
+.tl-hl .tl-cont { background: var(--forest-lt); border-radius: 6px; padding: 6px 10px; margin-bottom: 2px; border-bottom: none; }
+.tl-hl .tl-main { color: var(--forest); font-weight: 500; }
+.tl-hw .tl-time { color: var(--orange); font-weight: 700; }
+.tl-hw .tl-cont { background: var(--orange-lt); border-radius: 6px; padding: 6px 10px; margin-bottom: 2px; border-bottom: none; }
+.tl-hw .tl-main { color: var(--orange); font-weight: 500; }
+
+/* BADGES */
+.bk { display: inline-block; font-size: 9px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; padding: 2px 7px; border-radius: 100px; margin-left: 6px; vertical-align: middle; }
+.bk-c { background: var(--forest-lt); color: var(--forest); border: 1px solid rgba(45,90,61,0.2); }
+.bk-o { background: var(--stone-lt); color: var(--stone); border: 1px solid rgba(107,99,86,0.15); }
+.bk-w { background: var(--orange-lt); color: var(--orange); border: 1px solid rgba(196,80,10,0.2); }
+
+.rest-body { padding: 14px 0 4px; font-family: var(--font-serif); font-style: italic; font-size: 15px; color: var(--text2); }
+
+/* TICKET CARDS */
+.tickets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 10px; }
+.ticket-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+.ticket-top { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+.ticket-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.ticket-date { font-size: 11px; color: var(--text3); margin-top: 2px; }
+.ticket-time-block { padding: 12px 16px; display: flex; align-items: center; gap: 12px; }
+.ticket-time { font-family: var(--font-serif); font-size: 26px; font-weight: 700; color: var(--forest); flex-shrink: 0; }
+.ticket-time-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text3); }
+.ticket-time-note { font-size: 11px; color: var(--text2); margin-top: 3px; line-height: 1.4; }
+.ticket-ref { padding: 8px 16px; background: var(--forest-lt); border-top: 1px solid var(--border); font-size: 10px; color: var(--forest); font-weight: 500; line-height: 1.5; }
+
+/* CHECKLIST */
+.booking-section { margin-top: 36px; }
+.checklist { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+.ck-grid { display: grid; grid-template-columns: 1fr 1fr; }
+.ck-item { display: flex; align-items: flex-start; gap: 10px; padding: 14px 18px; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); }
+.ck-item:nth-child(even) { border-right: none; }
+.ck-item:nth-last-child(-n+2) { border-bottom: none; }
+.ck-dot { width: 22px; height: 22px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.ck-c{background:var(--forest-lt);color:var(--forest)} .ck-w{background:var(--orange-lt);color:var(--orange)}
+.ck-label { font-size: 13px; font-weight: 500; color: var(--text); }
+.ck-sub { font-size: 11px; color: var(--text3); margin-top: 2px; line-height: 1.4; }
+.ck-note { padding: 14px 18px; background: var(--forest-lt); border-top: 1px solid var(--border); font-size: 11px; color: var(--forest); line-height: 1.9; }
+
+footer { text-align: center; padding: 0 20px 56px; font-family: var(--font-serif); font-style: italic; font-size: 14px; color: var(--text3); }
+
+@media (max-width: 600px) {
+  .ck-grid { grid-template-columns: 1fr; }
+  .ck-item { border-right: none; }
+  .ck-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
+  .ck-item:last-child { border-bottom: none; }
+  .accom-body { grid-template-columns: 1fr 1fr; }
+  .accom-cell:nth-child(even) { border-right: none; }
+  .accom-cell:nth-last-child(-n+2) { border-bottom: none; }
+  .tickets-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <p class="hero-eyebrow">Group Trip &nbsp;·&nbsp; Canadian Rockies &nbsp;·&nbsp; Alberta</p>
+  <h1 class="hero-title">Banff <span>2026</span></h1>
+  <p class="hero-dates">May 12 – 19 &nbsp;·&nbsp; Group of Five</p>
+  <div class="hero-pills">
+    <div class="hero-pill">🏔 6 active days</div>
+    <div class="hero-pill">😴 1 rest day</div>
+    <div class="hero-pill">🚐 Dodge Grand Caravan</div>
+    <div class="hero-pill">🏡 Airbnb Calgary</div>
+    <div class="hero-pill">♨️ Hot Springs</div>
+  </div>
+  <svg class="mtn" viewBox="0 0 1200 130" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet">
+    <defs>
+      <linearGradient id="mg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#3a7050" stop-opacity="0.75"/>
+        <stop offset="100%" stop-color="#f5f0e8" stop-opacity="1"/>
+      </linearGradient>
+    </defs>
+    <polygon points="0,130 0,105 70,68 140,84 215,44 285,62 365,20 435,46 505,12 565,40 635,7 705,34 775,14 845,42 915,22 985,50 1055,24 1125,52 1200,30 1200,130" fill="url(#mg)"/>
+    <polygon fill="rgba(255,255,255,0.22)" points="505,12 519,21 533,15 546,24 538,40 521,32"/>
+    <polygon fill="rgba(255,255,255,0.22)" points="635,7 649,16 663,10 676,19 667,34 650,26"/>
+    <polygon fill="rgba(255,255,255,0.22)" points="775,14 789,23 803,17 814,26 805,40 788,32"/>
+    <polygon fill="rgba(255,255,255,0.22)" points="915,22 929,31 943,25 954,34 944,47 927,39"/>
+  </svg>
+</div>
+
+<div class="logistics">
+  <div class="lg-card"><div class="lg-icon lgi-g">✈️</div><div class="lg-info"><div class="lg-label">Outbound flight</div><div class="lg-value">WS651 · May 12</div><div class="lg-sub">YYZ → YYC · departs 6:30 PM</div></div></div>
+  <div class="lg-card"><div class="lg-icon lgi-s">✈️</div><div class="lg-info"><div class="lg-label">Return flight</div><div class="lg-value">AC152 · May 19</div><div class="lg-sub">YYC → YYZ · departs 11:00 AM</div></div></div>
+  <div class="lg-card"><div class="lg-icon lgi-a">🚐</div><div class="lg-info"><div class="lg-label">Budget · #42086250CA3</div><div class="lg-value">Dodge Grand Caravan</div><div class="lg-sub">Pickup May 12, 10:30 PM · YYC</div></div></div>
+  <div class="lg-card"><div class="lg-icon lgi-r">🏡</div><div class="lg-info"><div class="lg-label">Airbnb · hosted by Jan</div><div class="lg-value">5 Hidden Valley Gate NW</div><div class="lg-sub">Calgary, AB · check-in from 3 PM</div></div></div>
+</div>
+
+<div class="accom-wrap">
+  <div class="accom-card">
+    <div class="accom-hdr">
+      <div style="font-size:22px">🏡</div>
+      <div><div class="a-title">Entire Upper Floor Suite — hosted by Jan</div><div class="a-sub">5 Hidden Valley Gate NW, Calgary, AB T3A 5M1 · Airbnb</div></div>
+    </div>
+    <div class="accom-body">
+      <div class="accom-cell"><div class="ac-label">Check-in</div><div class="ac-val">Tue, May 12<br><strong>3:00 PM</strong></div></div>
+      <div class="accom-cell"><div class="ac-label">Checkout</div><div class="ac-val">Tue, May 19<br><strong>11:00 AM</strong></div></div>
+      <div class="accom-cell"><div class="ac-label">Bedrooms &amp; beds</div><div class="ac-val">2 bedrooms<br>3 queen beds</div></div>
+      <div class="accom-cell" style="border-right:none"><div class="ac-label">Bathrooms</div><div class="ac-val">2 bathrooms<br>+ kitchen &amp; living room</div></div>
+    </div>
+    <div class="accom-note">🔑 &nbsp;Private entrance to the entire upper floor — no shared space. Door code from Jan closer to check-in. No cleaning fee.</div>
+  </div>
+</div>
+
+<div class="tab-wrap">
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('itinerary', this)">📅 Day by Day</button>
+    <button class="tab-btn" onclick="switchTab('tickets', this)">🎫 Confirmed Tickets</button>
+  </div>
+
+  <div class="tab-panel active" id="tab-itinerary">
+    <div class="section-label">Day by day</div>
+    <div class="days" id="days"></div>
+
+    <div class="booking-section">
+      <div class="section-label">Full booking checklist</div>
+      <div class="checklist">
+        <div class="ck-grid">
+          <div class="ck-item"><div class="ck-dot ck-c">✓</div><div><div class="ck-label">Airbnb — Calgary house</div><div class="ck-sub">5 Hidden Valley Gate NW · May 12, 3 PM – May 19, 11 AM · host Jan</div></div></div>
+          <div class="ck-item"><div class="ck-dot ck-c">✓</div><div><div class="ck-label">Budget Rental Car</div><div class="ck-sub">#42086250CA3 · Dodge Grand Caravan · pickup May 12, 10:30 PM</div></div></div>
+          <div class="ck-item"><div class="ck-dot ck-c">✓</div><div><div class="ck-label">WS651 + AC152 Flights</div><div class="ck-sub">May 12 depart 6:30 PM · May 19 depart 11:00 AM</div></div></div>
+          <div class="ck-item"><div class="ck-dot ck-c">✓</div><div><div class="ck-label">Parks Canada Shuttle</div><div class="ck-sub">INPC26-3909506B1 · May 15, 8–9 AM window · 5 adults · $67.25 paid</div></div></div>
+          <div class="ck-item"><div class="ck-dot ck-c">✓</div><div><div class="ck-label">Banff Gondola</div><div class="ck-sub">Pursuit #3901726 · May 13, 2:30 PM boarding · 5 tickets</div></div></div>
+          <div class="ck-item"><div class="ck-dot ck-c">✓</div><div><div class="ck-label">Horseback — Sundance Loop</div><div class="ck-sub">GYGN6B6QFVY2 · May 14, 12:30 PM · Warner Stables · arrive by 12:00 PM</div></div></div>
+          <div class="ck-item"><div class="ck-dot ck-c">✓</div><div><div class="ck-label">Lake Minnewanka Cruise</div><div class="ck-sub">Pursuit #3901726 · May 14, 5:00 PM · check in dock by 4:45 PM</div></div></div>
+          <div class="ck-item"><div class="ck-dot ck-c">✓</div><div><div class="ck-label">Columbia Icefield + Skywalk</div><div class="ck-sub">Pursuit #3901726 · May 17, 12:30 PM · join line by 12:20 PM</div></div></div>
+          <div class="ck-item" style="border-bottom:none"><div class="ck-dot ck-w">♨</div><div><div class="ck-label">Banff Upper Hot Springs</div><div class="ck-sub">No booking · walk-in · 1–10 PM · 1 Mountain Ave, Banff</div></div></div>
+          <div class="ck-item" style="border-right:none;border-bottom:none"><div class="ck-dot ck-c">✓</div><div><div class="ck-label">Everything confirmed 🎉</div><div class="ck-sub">All tickets booked · just show up on time</div></div></div>
+        </div>
+        <div class="ck-note">
+          <strong>🎫 Gondola (May 13):</strong> Join boarding line 2:30 PM sharp — bring time-slot ticket AND barcode tickets. &nbsp;·&nbsp;
+          <strong>🐴 Horseback (May 14):</strong> Arrive Warner Stables 12:00 PM. No backpacks, no open-toed shoes. Tickets in GYG app. &nbsp;·&nbsp;
+          <strong>⛵ Cruise (May 14):</strong> Check in at dock by 4:45 PM. Bring barcode tickets. &nbsp;·&nbsp;
+          <strong>🧊 Icefield (May 17):</strong> Join line by 12:20 PM — bring Ice Explorer AND Skywalk barcode tickets. &nbsp;·&nbsp;
+          <strong>🚐 Budget:</strong> Physical licence + credit card. $750 hold. Return by 7:30 AM May 19. &nbsp;·&nbsp;
+          <strong>🚌 Shuttle (May 15):</strong> Check in at 1 Whitehorn Rd within 8–9 AM window — no exceptions. &nbsp;·&nbsp;
+          <strong>🏡 Airbnb:</strong> Checkout by 11 AM May 19.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-tickets">
+    <div class="section-label">Timed tickets — Pursuit #3901726 &amp; GYG GYGN6B6QFVY2</div>
+    <div class="tickets-grid">
+      <div class="ticket-card">
+        <div class="ticket-top"><div class="ticket-name">🚡 Banff Gondola</div><div class="ticket-date">Wed, May 13 · 5 adults</div></div>
+        <div class="ticket-time-block"><div class="ticket-time">2:30 PM</div><div><div class="ticket-time-label">Boarding time</div><div class="ticket-time-note">Join the boarding line at your scheduled time. Bring time-slot ticket AND individual barcode tickets.</div></div></div>
+        <div class="ticket-ref">Pursuit #3901726 · Order 28703405 · Non-refundable · Non-transferable</div>
+      </div>
+      <div class="ticket-card">
+        <div class="ticket-top"><div class="ticket-name">🐴 Sundance Loop Horseback Ride</div><div class="ticket-date">Thu, May 14 · 5 adults · 2 hrs</div></div>
+        <div class="ticket-time-block"><div class="ticket-time">12:30 PM</div><div><div class="ticket-time-label">Ride start · arrive by 12:00 PM</div><div class="ticket-time-note">Warner Stables, 1 Sundance Rd — check in at east barn office. No backpacks. Long pants required. Tickets in GetYourGuide app.</div></div></div>
+        <div class="ticket-ref">GYG GYGN6B6QFVY2 · Discover Banff Tours · Cancel before May 13, 12:30 PM for full refund</div>
+      </div>
+      <div class="ticket-card">
+        <div class="ticket-top"><div class="ticket-name">⛵ Lake Minnewanka Cruise</div><div class="ticket-date">Thu, May 14 · 5 adults</div></div>
+        <div class="ticket-time-block"><div class="ticket-time">5:00 PM</div><div><div class="ticket-time-label">Cruise time · check in by 4:45 PM</div><div class="ticket-time-note">Check in at the Ticket Office on the dock 15 minutes before departure. Bring barcode tickets.</div></div></div>
+        <div class="ticket-ref">Pursuit #3901726 · Order 28703405 · Non-refundable · Non-transferable</div>
+      </div>
+      <div class="ticket-card">
+        <div class="ticket-top"><div class="ticket-name">🚌 Lake Louise Shuttle</div><div class="ticket-date">Fri, May 15 · 5 adults</div></div>
+        <div class="ticket-time-block"><div class="ticket-time">8–9 AM</div><div><div class="ticket-time-label">Check-in window · no exceptions</div><div class="ticket-time-note">Park &amp; Ride at 1 Whitehorn Rd, Lake Louise ski resort. Arrive within the window — strictly enforced.</div></div></div>
+        <div class="ticket-ref">Parks Canada INPC26-3909506B1 · $67.25 paid · Cancel 1 hr before for refund (fees apply)</div>
+      </div>
+      <div class="ticket-card">
+        <div class="ticket-top"><div class="ticket-name">🧊 Columbia Icefield Adventure + Skywalk</div><div class="ticket-date">Sun, May 17 · 5 adults</div></div>
+        <div class="ticket-time-block"><div class="ticket-time">12:30 PM</div><div><div class="ticket-time-label">Tour time · join line by 12:20 PM</div><div class="ticket-time-note">Skywalk uses same tour time as Ice Explorer. Bring both sets of barcode tickets. Valid May 17–19.</div></div></div>
+        <div class="ticket-ref">Pursuit #3901726 · Order 28703405 · Non-refundable · Non-transferable</div>
+      </div>
+      <div class="ticket-card">
+        <div class="ticket-top"><div class="ticket-name">♨️ Banff Upper Hot Springs</div><div class="ticket-date">Wed, May 13 · after gondola</div></div>
+        <div class="ticket-time-block"><div class="ticket-time">Walk-in</div><div><div class="ticket-time-label">No booking · open 1–10 PM</div><div class="ticket-time-note">Pay at the door. 1 Mountain Ave, Banff. Water 37–40°C — limit 1–2 hrs, stay hydrated. Reopened April 2026.</div></div></div>
+        <div class="ticket-ref">No reservation required · first-come, first-served · last entry 9:30 PM</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>Banff National Park &nbsp;·&nbsp; Alberta, Canada &nbsp;·&nbsp; May 2026</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  function bk(label, cls) { return '<span class="bk bk-' + cls + '">' + label + '</span>'; }
+
+  /* drive() creates a dedicated drive row object */
+  function drive(from, to, dur) {
+    return { drive: true, from: from, to: to, dur: dur };
+  }
+
+  var days = [
+    /* ── DAY 1 ── */
+    { num:'1', dn:'dn-t', dt:'dt-t', tag:'Travel', date:'Tue, May 12', name:'Arrive in Calgary',
+      items:[
+        { t:'Daytime', d:'Travel day — pack up and head to Pearson Airport' },
+        { t:'6:30 PM',  d:'WS651 departs Toronto YYZ, Terminal 3', n:'~4.5 hr flight · arrives ~9:00 PM Calgary time' },
+        { t:'~9:00 PM', d:'Land at YYC · collect bags' },
+        { t:'10:30 PM', d:'Pick up Budget Grand Caravan ' + bk('Confirmed','c'), n:'2000 Airport Road NE · #42086250CA3 · bring physical driver\'s licence + credit card · $750 hold' },
+        drive('YYC Airport', 'Airbnb (5 Hidden Valley Gate NW)', '~20–25 min'),
+        { t:'Night', d:'Check into Airbnb ' + bk('Confirmed','c'), n:'Door code from Jan closer to date' }
+      ]
+    },
+
+    /* ── DAY 2 ── */
+    { num:'2', dn:'dn-a', dt:'dt-a', tag:'Active', date:'Wed, May 13', name:'Banff Classics + Hot Springs',
+      items:[
+        { t:'7:30 AM',  d:'Depart Calgary' },
+        drive('Calgary (Airbnb)', 'Canmore', '~1 hr 15 min'),
+        { t:'8:45 AM',  d:'Canmore coffee stop', n:'30 min · great mountain town pit-stop' },
+        drive('Canmore', 'Banff town', '~20 min'),
+        { t:'10:00 AM', d:'Tunnel Mountain Trail', n:'4.5 km round trip · ~1.5–2 hrs · panoramic views of Banff and the Bow Valley' },
+        { t:'12:15 PM', d:'Lunch in Banff town' },
+        { t:'2:30 PM',  d:'🚡 Banff Gondola — boarding time ' + bk('Confirmed','c'), n:'Pursuit #3901726 · join line at 2:30 PM sharp · bring time-slot ticket AND barcode tickets · summit 2,281 m', hl:true },
+        { t:'4:00 PM',  d:'Bow Falls + Surprise Corner viewpoint', n:'~30 min · where the Bow River narrows dramatically' },
+        drive('Banff town', 'Banff Upper Hot Springs (1 Mountain Ave)', '~5 min'),
+        { t:'4:45 PM',  d:'♨️ Banff Upper Hot Springs ' + bk('Walk-in · no booking','w'), n:'Pay at door · open till 10 PM · water 37–40°C · limit soak to 1–2 hrs, stay hydrated · reopened April 2026' },
+        { t:'6:45 PM',  d:'Dinner in Banff town' },
+        drive('Banff town', 'Calgary (Airbnb)', '~1 hr 30 min'),
+        { t:'~9:45 PM', d:'Back in Calgary' }
+      ]
+    },
+
+    /* ── DAY 3 ── */
+    { num:'3', dn:'dn-a', dt:'dt-a', tag:'Active', date:'Thu, May 14', name:'Horseback Ride + Minnewanka Cruise',
+      items:[
+        { t:'9:30 AM',  d:'Depart Calgary' },
+        drive('Calgary (Airbnb)', 'Banff town', '~1 hr 30 min'),
+        { t:'11:00 AM', d:'Arrive in Banff · explore or grab a coffee' },
+        drive('Banff town', 'Warner Stables (1 Sundance Rd)', '~5 min'),
+        { t:'12:00 PM', d:'🐴 Arrive at Warner Stables ' + bk('Must be 30 min early','w'), n:'Check in at east barn office · no backpacks · long pants required · tickets in GetYourGuide app', hw:true },
+        { t:'12:30 PM', d:'Sundance Loop Horseback Ride begins ' + bk('Confirmed','c'), n:'GYG GYGN6B6QFVY2 · Discover Banff Tours · 2 hrs · scenic loop along the Bow River' },
+        { t:'2:30 PM',  d:'Ride ends — freshen up, relax in Banff' },
+        { t:'3:00 PM',  d:'Lunch / late lunch in Banff town' },
+        drive('Banff town', 'Lake Minnewanka dock', '~15 min'),
+        { t:'4:45 PM',  d:'⛵ Check in at Lake Minnewanka dock ' + bk('15 min early required','w'), n:'Ticket Office on the dock · bring barcode tickets', hw:true },
+        { t:'5:00 PM',  d:'Lake Minnewanka Cruise ' + bk('Confirmed','c'), n:'Pursuit #3901726 · ~1 hr · largest lake in Banff National Park · stunning mountain backdrop' },
+        drive('Lake Minnewanka', 'Two Jack Lake', '~5 min'),
+        { t:'6:00 PM',  d:'Two Jack Lake — relax and take photos', n:'Beautiful Fairholme Range reflections' },
+        drive('Two Jack Lake', 'Calgary (Airbnb)', '~1 hr 35 min'),
+        { t:'~8:30 PM', d:'Back in Calgary' }
+      ]
+    },
+
+    /* ── DAY 4 ── */
+    { num:'4', dn:'dn-a', dt:'dt-a', tag:'Active', date:'Fri, May 15', name:'Lake Louise + Lake Agnes',
+      items:[
+        { t:'6:30 AM',  d:'Depart Calgary — early start, worth every minute' },
+        drive('Calgary (Airbnb)', 'Lake Louise Park & Ride (1 Whitehorn Rd)', '~1 hr 30 min'),
+        { t:'8:00 AM',  d:'Arrive Lake Louise Park &amp; Ride ' + bk('Shuttle confirmed','c'), n:'INPC26-3909506B1 · check in within 8–9 AM window — strictly no late check-in', hl:true },
+        { t:'8:30 AM',  d:'Shuttle to Lake Louise lakeshore' },
+        { t:'~9:00 AM', d:'Lake Agnes hike', n:'~7 km round trip · 2.5–3.5 hrs · 400 m elevation gain · Tea House opens June 4 (scenic stop only May 15)' },
+        { t:'12:30 PM', d:'Relax at the lakeshore' },
+        { t:'1:30 PM',  d:'Lunch near Lake Louise' },
+        { t:'Optional', d:'Little Beehive extension ' + bk('+1 hr','o'), n:'Only if group still has energy — panoramic views over Lake Agnes' },
+        { t:'3:30 PM',  d:'Return shuttle to Park &amp; Ride', n:'Last return shuttle departs 7:30 PM — no rush' },
+        drive('Lake Louise Park & Ride', 'Calgary (Airbnb)', '~2 hrs'),
+        { t:'~7:00 PM', d:'Back in Calgary' }
+      ]
+    },
+
+    /* ── DAY 5 ── */
+    { num:'5', dn:'dn-r', dt:'dt-r', tag:'Rest', date:'Sat, May 16', name:'Rest Day',
+      rest:true, restNote:'No plans today. Sleep in, explore Calgary, grab a great meal, or simply do nothing. You\'ve put in a lot of trail miles and saddle time — enjoy the break.'
+    },
+
+    /* ── DAY 6 ── */
+    { num:'6', dn:'dn-a', dt:'dt-a', tag:'Active', date:'Sun, May 17', name:'Icefields Parkway',
+      items:[
+        { t:'6:30 AM',  d:'Depart Calgary — full tank, snacks, warm layers packed' },
+        drive('Calgary (Airbnb)', 'Icefields Parkway entrance (near Lake Louise)', '~2 hrs'),
+        { t:'8:30 AM',  d:'Enter Icefields Parkway (Hwy 93 N)', n:'One of the world\'s great scenic drives · 230 km of glaciers, turquoise lakes, and peaks' },
+        drive('Parkway entrance', 'Bow Lake', '~30 min'),
+        { t:'9:00 AM',  d:'Bow Lake stop', n:'Glacial turquoise lake with Crowfoot Glacier behind — stunning in morning light' },
+        drive('Bow Lake', 'Peyto Lake viewpoint', '~20 min'),
+        { t:'10:00 AM', d:'Peyto Lake viewpoint', n:'Short walk to the overlook · wolf-head shaped electric blue lake' },
+        drive('Peyto Lake', 'Columbia Icefield Centre', '~45 min'),
+        { t:'12:20 PM', d:'🧊 Join Columbia Icefield boarding line ' + bk('10 min early required','w'), n:'Tour time is 12:30 PM — must be in line by 12:20 PM · bring Ice Explorer AND Skywalk barcode tickets', hw:true },
+        { t:'12:30 PM', d:'Columbia Icefield Adventure + Skywalk ' + bk('Confirmed','c'), n:'Pursuit #3901726 · Ice Explorer onto Athabasca Glacier + glass-floored Skywalk · ~2 hrs total' },
+        { t:'2:30 PM',  d:'Lunch at the Icefield Centre' },
+        { t:'3:30 PM',  d:'Depart Icefields Parkway heading south' },
+        drive('Columbia Icefield', 'Calgary (Airbnb)', '~3.5–4 hrs', true),
+        { t:'~8:00 PM', d:'Back in Calgary' }
+      ]
+    },
+
+    /* ── DAY 7 ── */
+    { num:'7', dn:'dn-a', dt:'dt-a', tag:'Active', date:'Mon, May 18', name:'Johnston Canyon + Vermilion Lakes',
+      items:[
+        { t:'8:00 AM',  d:'Depart Calgary — relaxed start on the last full day' },
+        drive('Calgary (Airbnb)', 'Johnston Canyon trailhead', '~1 hr 30 min'),
+        { t:'9:30 AM',  d:'Johnston Canyon hike', n:'Lower + Upper Falls · ~4–5 km · 2–2.5 hrs · catwalks bolted into the canyon walls over rushing water' },
+        drive('Johnston Canyon', 'Banff town', '~25 min'),
+        { t:'12:00 PM', d:'Lunch in Banff town' },
+        drive('Banff town', 'Vermilion Lakes', '~5 min'),
+        { t:'1:30 PM',  d:'Vermilion Lakes drive &amp; walk', n:'Three shallow lakes west of Banff · iconic Mount Rundle reflections · one of the most photographed spots in the park' },
+        { t:'Optional', d:'Cave and Basin Historic Site ' + bk('~45 min','o'), n:'Birthplace of Canada\'s national parks · thermal springs · history exhibit' },
+        { t:'3:30 PM',  d:'Banff Ave stroll — last coffee, souvenirs, browse' },
+        drive('Banff town', 'Calgary (Airbnb)', '~1 hr 30 min'),
+        { t:'~6:30 PM', d:'Back in Calgary · final group dinner 🎉' },
+        { t:'Night',    d:'Pack bags for the early airport run tomorrow' }
+      ]
+    },
+
+    /* ── DAY 8 ── */
+    { num:'8', dn:'dn-f', dt:'dt-f', tag:'Fly home', date:'Tue, May 19', name:'Fly Home to Toronto',
+      items:[
+        { t:'By 11 AM',  d:'Airbnb checkout ' + bk('Deadline','w'), n:'Must be out by 11 AM · coordinate with car return timing', hw:true },
+        { t:'7:00 AM',   d:'Depart Airbnb' },
+        drive('Airbnb (5 Hidden Valley Gate NW)', 'YYC Airport — Budget return', '~20–25 min'),
+        { t:'~7:30 AM',  d:'Return Budget Grand Caravan at YYC', n:'Budget opens 7 AM · 2000 Airport Rd NE · unpair Bluetooth devices before returning' },
+        { t:'~8:00 AM',  d:'Check in + security for AC152' },
+        { t:'11:00 AM',  d:'AC152 departs Calgary (YYC)', n:'✈️ ~4 hr flight · arrives Toronto Pearson Terminal 1' },
+        { t:'~5:00 PM',  d:'Arrive Toronto YYZ — welcome home 🏠' }
+      ]
+    }
+  ];
+
+  /* ── render ── */
+  var container = document.getElementById('days');
+
+  days.forEach(function (d, i) {
+    var card = document.createElement('div');
+    card.className = 'day-card';
+
+    var bodyHtml = '';
+    if (d.rest) {
+      bodyHtml = '<div class="rest-body">' + d.restNote + '</div>';
+    } else {
+      var rows = d.items.map(function (it, idx) {
+        var isLast = idx === d.items.length - 1;
+
+        /* DRIVE ROW */
+        if (it.drive) {
+          var driveNote = it.long ? '<div class="tl-drive-dur">Note: services sparse on this stretch — keep tank full</div>' : '';
+          return (
+            '<div class="tl-drive-time">🚗</div>' +
+            '<div class="tl-drive-cont">' +
+              '<div>' +
+                '<div class="tl-drive-route">' + it.from + ' → ' + it.to + '</div>' +
+                '<div class="tl-drive-dur">' + it.dur + '</div>' +
+                driveNote +
+              '</div>' +
+            '</div>'
+          );
+        }
+
+        /* NORMAL ROW */
+        var rowCls = it.hl ? 'tl-hl' : (it.hw ? 'tl-hw' : '');
+        var contCls = (isLast ? 'tl-cont tl-last' : 'tl-cont') + (rowCls ? ' ' + rowCls : '');
+        var note = it.n ? '<div class="tl-note">' + it.n + '</div>' : '';
+        return (
+          '<div class="tl-time ' + rowCls + '">' + it.t + '</div>' +
+          '<div class="' + contCls + '">' +
+            '<div class="tl-main">' + it.d + '</div>' + note +
+          '</div>'
+        );
+      }).join('');
+      bodyHtml = '<div class="tl-wrap">' + rows + '</div>';
+    }
+
+    card.innerHTML =
+      '<div class="day-header" onclick="tog(' + i + ')">' +
+        '<div class="dn ' + d.dn + '">' + d.num + '</div>' +
+        '<div class="day-meta">' +
+          '<div class="day-date">' + d.date + '</div>' +
+          '<div class="day-name">' + d.name + '</div>' +
+        '</div>' +
+        '<div class="day-tag ' + d.dt + '">' + d.tag + '</div>' +
+        '<svg class="chev" id="c' + i + '" viewBox="0 0 16 16" width="16" height="16">' +
+          '<polyline points="4,6 8,10 12,6"/>' +
+        '</svg>' +
+      '</div>' +
+      '<div class="day-body" id="b' + i + '">' + bodyHtml + '</div>';
+
+    container.appendChild(card);
+  });
+
+  window.switchTab = function (id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(function (p) { p.classList.remove('active'); });
+    document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  };
+
+  window.tog = function (i) {
+    document.getElementById('b' + i).classList.toggle('open');
+    document.getElementById('c' + i).classList.toggle('open');
+  };
+
+  window.tog(0);
+}());
+</script>
+</body>
+</html>
